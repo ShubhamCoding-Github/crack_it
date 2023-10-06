@@ -1,0 +1,91 @@
+name: crack_it_user
+description: A new Flutter project.
+publish_to: 'none' 
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.6 <3.0.0'
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  cupertino_icons: ^1.0.2
+  get: ^4.6.5
+  responsive_framework: ^0.2.0
+  flutter_svg: 
+  animate_do: ^3.0.2
+  flutter_staggered_animations: ^1.1.1
+  dot_navigation_bar: ^1.0.2
+  flutter_rating_bar: ^4.0.1
+  flutter_launcher_icons: ^0.13.1
+  dio: ^5.3.3
+  curl_logger_dio_interceptor: ^1.0.0
+  shared_preferences: ^2.2.1
+  path_provider: ^2.1.1
+  permission_handler: ^11.0.1
+  dropdown_button2: ^2.3.9
+  intl: ^0.18.1
+
+
+
+  
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  
+  flutter_lints: ^2.0.0
+
+flutter_icons:
+  image_path: "assets/icons/app_icon.png" 
+  android: true
+  ios: true
+
+
+
+
+flutter:
+
+  
+  
+  
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/delete/
+    - assets/icons/  
+
+
+  
+  
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
