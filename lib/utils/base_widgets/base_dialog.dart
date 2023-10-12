@@ -154,7 +154,7 @@ void showLogoutAccountDialogue(BuildContext context) {
       });
 }
 
-void showBookingCancelDialogue(BuildContext context) {
+void showBookingCancelDialogue(BuildContext context,{required Function() onTap}) {
   showGeneralDialog(
       barrierColor: Colors.black.withOpacity(0.5),
       transitionBuilder: (context, a1, a2, widget) {
@@ -227,9 +227,7 @@ void showBookingCancelDialogue(BuildContext context) {
                                     width: 80,
                                     height: 34,
                                     child: BaseButton(
-                                      onTap: () {
-                                        Get.back();
-                                      },
+                                      onTap:onTap,
                                       title: "Yes",
                                       fontSize: fs14,
                                     )),

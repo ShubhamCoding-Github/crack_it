@@ -93,6 +93,7 @@ class _SubCategoryViewState extends State<SubCategoryView> {
                             return GestureDetector(
                               onTap: () {
                                   controller.selectedSubIndex.value = index;
+                                  controller.skills.clear();
                                   controller.getSubTypeCategory();
                               },
                               child:Obx(() => Container(
@@ -154,8 +155,8 @@ class _SubCategoryViewState extends State<SubCategoryView> {
                                 showDatePicker(
                                     context: context,
                                     initialDate: DateTime.now(),
-                                    firstDate: DateTime(2010),
-                                    lastDate: DateTime.now()).then((value){
+                                    firstDate: DateTime.now(),
+                                    lastDate: DateTime(2100)).then((value){
                                       controller.dateController.value.text=formatFlutterDateTime(flutterDateTime:value!);
                                 });
                               },
@@ -286,27 +287,26 @@ class _SubCategoryViewState extends State<SubCategoryView> {
                         ),
                         SizedBox(
                           height: 80,
-                          child: ListView.builder(
+                          child:ListView.builder(
                             scrollDirection: Axis.horizontal,
                             itemCount: controller.timeList.length,
                             itemBuilder: (BuildContext context, int index) {
                               return GestureDetector(
                                   onTap: () {
-                                    controller.selectedTime = index;
-                                    controller.update();
+                                    controller.selectedTime.value = index;
                                   },
-                                  child: Container(
+                                  child:Obx(() => Container(
                                     margin: const EdgeInsets.all(8),
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 16),
                                     decoration: BoxDecoration(
                                       border: Border.all(
                                           color:
-                                              controller.selectedTime == index
+                                              controller.selectedTime.value == index
                                                   ? primaryColor
                                                   : borderGrayColor,
                                           width:
-                                              controller.selectedTime == index
+                                              controller.selectedTime.value == index
                                                   ? 2
                                                   : 1),
                                       borderRadius: BorderRadius.circular(15),
@@ -318,7 +318,7 @@ class _SubCategoryViewState extends State<SubCategoryView> {
                                         Text(
                                           controller.timeList[index],
                                           style: TextStyle(
-                                              color: controller.selectedTime ==
+                                              color: controller.selectedTime.value ==
                                                       index
                                                   ? primaryColor
                                                   : blackColor,
@@ -327,7 +327,7 @@ class _SubCategoryViewState extends State<SubCategoryView> {
                                         ),
                                       ],
                                     ),
-                                  ));
+                                  )));
                             },
                           ),
                         ),
@@ -372,18 +372,29 @@ class _CustomGridWidgetState extends State<CustomGridWidget> {
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
+          String category = controller.subTypeCategories[index].sId!;
+          bool isSelected = controller.skills.contains(category);
           return GestureDetector(
             onTap: () {
-              controller.selectedSubTypeIndex.value = index;
+              if(controller.skills.contains(controller.subTypeCategories[index].sId)){
+                controller.skills.remove(controller.subTypeCategories[index].sId);
+              }else{
+                controller.skills.add(controller.subTypeCategories[index].sId!);
+              }
+              print("skillss--${controller.skills}");
+              controller.skills.refresh();
+              setState(() {
+
+              });
             },
             child:Obx(() => Container(
-              margin: EdgeInsets.all(8),
+              margin: const EdgeInsets.all(8),
               decoration: BoxDecoration(
                 border: Border.all(
-                    color: controller.selectedSubTypeIndex.value == index
+                    color: isSelected
                         ? primaryColor
                         : borderGrayColor,
-                    width: controller.selectedSubTypeIndex.value == index ? 2 : 1),
+                    width: isSelected ? 2 : 1),
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Column(
@@ -391,7 +402,7 @@ class _CustomGridWidgetState extends State<CustomGridWidget> {
                 children: [
                   Text(controller.subTypeCategories[index].title??'',
                     style: TextStyle(
-                        color: controller.selectedSubTypeIndex.value == index
+                        color: isSelected
                             ? primaryColor
                             : blackColor,
                         fontWeight: FontWeight.bold),

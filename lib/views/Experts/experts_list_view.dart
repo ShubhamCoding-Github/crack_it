@@ -125,7 +125,7 @@ class _ExpertsListViewState extends State<ExpertsListView> {
         Get.to(ExpertsProfileView(data:controller.expertList[index],));
       },
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 12),
+        margin: const EdgeInsets.symmetric(vertical: 12),
         padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
         decoration: BoxDecoration(
             border: Border.all(width: 1, color: borderGrayColor),
@@ -146,7 +146,7 @@ class _ExpertsListViewState extends State<ExpertsListView> {
                   children: [
                     Text(
                       "${controller.expertList[index].user?.firstName??''}  ${controller.expertList[index].user?.lastName?[0].capitalizeFirst??''}",
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 24,
                           color: blackColor,
                           fontWeight: FontWeight.bold),
@@ -193,7 +193,7 @@ class _ExpertsListViewState extends State<ExpertsListView> {
                       visible: true,
                       child: InkWell(
                         onTap: () {
-                          Get.to(PaymentView());
+                          controller.createBooking(expertId:controller.expertList[index].user!.sId!);
                         },
                         child: Container(
                             width: 100,

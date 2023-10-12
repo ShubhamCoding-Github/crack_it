@@ -319,22 +319,21 @@ class BaseAPI {
   }
 
   void _handleError(DioException e) {
-    log('erorr--->>>${e.type}');
-    // if (e.type == DioException.connectionTimeout(timeout:Duration(seconds: 59), requestOptions: requestOptions) || e.type == DioErrorType.receiveTimeout || e.type == DioErrorType.sendTimeout) {
-    //   log('Timeout Error: ${e.message}');
-    // } else if (e.type == DioErrorType.response) { //todo bad response  chnage to other
-    //   log('Bad Response Error: ${e.message}');
-    //   try{
-    //     BaseOverlays().showSnackBar(message: (e.response?.data['message']));
-    //   }catch(error){
-    //     BaseOverlays().showSnackBar(message:e.message);
-    //   }
-    // } else if (e.type == DioErrorType.cancel) {
-    //   // Handle cancel error
-    //   log('Request Cancelled Error: ${e.message}');
-    // } else {
-    //   // Handle other errors
-    //   log('Unknown Error: ${e.message}');
-    // }
+      log('erorr--->>>${e.type}');
+     if (e.type == DioExceptionType.connectionTimeout || e.type == DioExceptionType.receiveTimeout || e.type == DioExceptionType.sendTimeout) {
+      log('Timeout Error: ${e.message}');
+      BaseOverlays().showSnackBar(message:e.message??'');
+    } else if (e.type == DioExceptionType.badResponse) {
+      log('Bad Response Error: ${e.message}');
+      try{
+        BaseOverlays().showSnackBar(message: (e.response?.data['message']));
+      }catch(error){
+        BaseOverlays().showSnackBar(message:e.message??'');
+      }
+    } else if (e.type == DioExceptionType.cancel) {
+      log('Request Cancelled Error: ${e.message}');
+    } else {
+      log('Unknown Error: ${e.message}');
+    }
   }
 }

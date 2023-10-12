@@ -1,15 +1,22 @@
+import 'package:crack_it_user/expert_views/profile/my_profile_view_expert.dart';
 import 'package:crack_it_user/utils/constants/base_colors.dart';
 import 'package:crack_it_user/utils/constants/base_images.dart';
 import 'package:crack_it_user/views/booking/booking_base_view.dart';
 import 'package:crack_it_user/views/category/category_view.dart';
 import 'package:crack_it_user/views/chat/chat_list_view.dart';
 import 'package:crack_it_user/views/profile/my_profile_view.dart';
+import 'package:crack_it_user/views/wallet/controller/wallet_controller.dart';
 import 'package:crack_it_user/views/wallet/wallet_view.dart';
 import 'package:flutter/material.dart';
 import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+
+import '../../base_controller.dart';
+import 'controller/dashboard_controller.dart';
 
 enum SelectedTab { message, booking, add, wallet, user }
+enum SelectedTabExpert { message, booking, wallet, user }
 
 class DashboardView extends StatefulWidget {
   final bool isFromOther;
@@ -21,6 +28,8 @@ class DashboardView extends StatefulWidget {
 }
 
 class _DashboardViewState extends State<DashboardView> {
+  DashBoardController controller=Get.put(DashBoardController());
+  String role='';
   @override
   void initState() {
     if (widget.isFromOther) {
@@ -45,20 +54,25 @@ class _DashboardViewState extends State<DashboardView> {
         : Colors.white;
   }
 
-  final List<Widget> _pages = [
+  final List<Widget> _pagesUser = [
     ChatView(),
     MyBookingBaseView(),
     CategoryView(),
     WalletView(),
     MyProfileView(),
   ];
+
+  final List<Widget> _pagesExpert = [
+    ChatView(),
+    MyBookingBaseView(),
+    WalletView(),
+    MyProfileViewExpert(),
+  ];
   @override
   Widget build(BuildContext context) {
-    // if(_SelectedTab.values.indexOf(_selectedTab) ==2){
-    //   Get.to(CategoryView());
-    // }
+    role=Get.find<BaseController>().user?.role??'';
     return Scaffold(
-      body: _pages[SelectedTab.values.indexOf(selectedTab)],
+      body:role.toUpperCase()=="USER"?_pagesUser[SelectedTab.values.indexOf(selectedTab)]:_pagesExpert[SelectedTab.values.indexOf(selectedTab)],
       extendBody: true,
       bottomNavigationBar: DotNavigationBar(
         currentIndex: SelectedTab.values.indexOf(selectedTab),
@@ -81,21 +95,20 @@ class _DashboardViewState extends State<DashboardView> {
             selectedColor: Color(0xff73544C),
           ),
 
-          /// Search
+          if(role.toUpperCase()=="USER")...[
           DotNavigationBarItem(
             icon: SvgPicture.asset(addIc),
             selectedColor: Color(0xff73544C),
-          ),
-
+          )],
           /// Profile
           DotNavigationBarItem(
-            icon: SvgPicture.asset(walletIc, color: _getSelectedColor(3)),
+            icon: SvgPicture.asset(walletIc, color: _getSelectedColor(role.toUpperCase()=="USER"?2:3)),
             selectedColor: Color(0xff73544C),
           ),
 
           /// Profile
           DotNavigationBarItem(
-            icon: SvgPicture.asset(userIc, color: _getSelectedColor(4)),
+            icon: SvgPicture.asset(userIc, color: _getSelectedColor(role.toUpperCase()=="USER"?3:4)),
             selectedColor: Color(0xff73544C),
           ),
         ],

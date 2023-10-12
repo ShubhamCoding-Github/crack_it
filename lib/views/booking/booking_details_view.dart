@@ -1,25 +1,41 @@
 import 'package:crack_it_user/utils/base_widgets/base_app_bar.dart';
 import 'package:crack_it_user/utils/base_widgets/base_button.dart';
+import 'package:crack_it_user/utils/base_widgets/base_utility.dart';
 import 'package:crack_it_user/utils/constants/base_colors.dart';
 import 'package:crack_it_user/utils/constants/base_images.dart';
+import 'package:crack_it_user/views/dashboard/controller/dashboard_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+
+import '../../response_modal/booking_list_modal.dart';
 
 class MyBookingDetailsView extends StatefulWidget {
-  const MyBookingDetailsView({super.key});
+  final String id;
+  const MyBookingDetailsView({super.key,required this.id});
 
   @override
   State<MyBookingDetailsView> createState() => _MyBookingDetailsViewState();
 }
 
 class _MyBookingDetailsViewState extends State<MyBookingDetailsView> {
+  DashBoardController controller=Get.find<DashBoardController>();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    controller.getBookingDetails(id:widget.id);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const BaseAppBar(
+      appBar:  BaseAppBar(
         title: "Booking Details",
+        onBackPressed: (){
+          Get.back();
+        },
       ),
-      body: Padding(
+      body:Obx(() => Padding(
         padding: const EdgeInsets.only(left: 20, top: 38, right: 20),
         child: Column(children: [
           Row(
@@ -32,9 +48,9 @@ class _MyBookingDetailsViewState extends State<MyBookingDetailsView> {
               Container(
                   width: 120,
                   height: 34,
-                  child: const BaseButtonWithoutBackground(
+                  child:  BaseButtonWithoutBackground(
                     btnRadius: 19,
-                    title: "Confirmed",
+                    title:controller.data.value.booking?.booking?.status??'',
                     btnColor: whiteColor,
                   ))
             ],
@@ -77,8 +93,9 @@ class _MyBookingDetailsViewState extends State<MyBookingDetailsView> {
                               baseTextRow(
                                   title1: "Date & Time",
                                   fontWeight: FontWeight.w800),
-                              baseTextRow(title1: "Monday 21 Aug, 2023"),
-                              baseTextRow(title1: "8:00 - 8:30 AM")
+                              baseTextRow(title1: controller.data.value.booking?.booking?.date!=null?getFormattedMonth(controller.data.value.booking!.booking!.date!):''),
+                              baseTextRow(title1:"${controller.data.value.booking?.booking?.startTime!=null?getFormattedTime3(controller.data.value.booking!.booking!.startTime!):""} - ${controller.data.value.booking?.booking?.endTime!=null?getFormattedTime3(controller.data.value.booking!.booking!.endTime!):""}",
+                              )
                             ],
                           )
                         ],
@@ -128,18 +145,18 @@ class _MyBookingDetailsViewState extends State<MyBookingDetailsView> {
                                 width: 60,
                               ),
                               const SizedBox(width: 12),
-                              const Column(
+                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "Jaxen C",
+                                    "${controller.data.value.booking?.booking?.expert?.firstName??''} ${controller.data.value.booking?.booking?.expert?.lastName?[0].capitalizeFirst??''}",
                                     style: TextStyle(
                                         fontSize: 24,
                                         color: blackColor,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Text(
-                                    "Front-end Expert | 5 year",
+                                    "${controller.data.value.expertProfile?.jobCategory?.title??''} | ${controller.data.value.expertProfile?.experience??''} year",
                                     style: TextStyle(
                                         fontSize: 16, color: textGrayColor),
                                   ),
@@ -156,18 +173,18 @@ class _MyBookingDetailsViewState extends State<MyBookingDetailsView> {
             ),
           ),
           baseTextRow(title1: 'Payment Info', fontSize: 20),
-          baseTextRow(title1: 'Total Price', title2: '59.00'),
+          baseTextRow(title1: 'Total Price', title2:controller.data.value.expertProfile?.price!=null? controller.data.value.expertProfile!.price.toString():""),
           baseTextRow(title1: 'Tax', title2: '0.00'),
           const Divider(
             thickness: 1,
           ),
           baseTextRow(
               title1: 'Payment Total',
-              title2: '59.00',
+              title2: "${controller.data.value.expertProfile?.price!=null? controller.data.value.expertProfile?.price.toString():""}",
               fontWeight: FontWeight.bold,
               fontSize: 18),
         ]),
-      ),
+      )),
     );
   }
 
@@ -188,7 +205,7 @@ class _MyBookingDetailsViewState extends State<MyBookingDetailsView> {
           title2 == null
               ? const SizedBox()
               : Text(
-                  "\$${title2}",
+                  "\$$title2",
                   style: TextStyle(fontSize: fontSize, fontWeight: fontWeight),
                 ),
         ],

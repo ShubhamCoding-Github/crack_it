@@ -26,3 +26,6 @@ const String logoPng = "assets/icons/Group 1@3x.png";
 const String walletBackgroundIc = "assets/icons/Group 275.svg";
 const String walletTnxIc = "assets/icons/Group 276.svg";
 const String warningIc = "assets/icons/Group 265.svg";
+
+////Expert
+const String messageIc = "assets/icons/Group 264.svg";

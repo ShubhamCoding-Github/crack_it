@@ -1,6 +1,9 @@
 import 'package:crack_it_user/base_controller.dart';
+import 'package:crack_it_user/response_modal/common_response_modal.dart';
 import 'package:crack_it_user/response_modal/expert_list_modal.dart';
 import 'package:crack_it_user/response_modal/timeZone_modal.dart';
+import 'package:crack_it_user/utils/base_widgets/base_utility.dart';
+import 'package:crack_it_user/views/dashboard/dashboard_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../backend/api_end_points.dart';
@@ -50,7 +53,7 @@ class CategoryController extends GetxController {
   RxInt selectedCategoryIndex =0.obs;
   RxInt selectedSubIndex = 0.obs;
   RxInt selectedSubTypeIndex = 0.obs;
-  int selectedTime = -1;
+  RxInt selectedTime = 0.obs;
   final List<String> items = [
     'FRONT-END',
     'BACK-END',
@@ -166,27 +169,29 @@ class CategoryController extends GetxController {
     });
   }
 
-  Future<void> createBooking()async {
+  Future<void> createBooking({required String expertId})async {
     dio.FormData data = dio.FormData.fromMap({
       "user":Get.find<BaseController>().user?.sId??'',
-      "expert":"",
-      "jobCategory":"",
-      "skill[]":[],
+      "expert":expertId,
+      "jobCategory":categories[selectedCategoryIndex.value].sId,
       "jobDescription":jobDescription.value.text.trim(),
-      "duration":30,
+      "duration":selectedTime.value==0?30:selectedTime.value==1?60:selectedTime.value==2?90:selectedTime.value==3?120:150,
       "timeZone":selectedTimeZone.value.symbol,
-      "date":"2023-10-10",
-      "startTime":"07:30:00"
+      "date":dateController.value.text,
+      "startTime":backendFormatOfTime(timeController.value.text)
     });
+    for(int index=0;index<skills.length;index++) {
+      data.fields.add(MapEntry('skills[$index]', skills[index]));
+    }
     BaseAPI().post(url:ApiEndPoints.createBooking,data:data).then((value) {
       if(value!=null){
-        // SignUpResponse response=SignUpResponse.fromJson(value.data);
-        // if(response.success??false){
-        //   Get.offAll(const LoginScreen());
-        //   BaseOverlays().showSnackBar(message:response.message??'',title: "Success");
-        // }else{
-        //   BaseOverlays().showSnackBar(message:response.message??'');
-        // }
+        CommonResponse response=CommonResponse.fromJson(value.data);
+        if(response.success??false){
+          Get.offAll(()=>const DashboardView());
+          BaseOverlays().showSnackBar(message:response.message??'',title: "Success");
+        }else{
+          BaseOverlays().showSnackBar(message:response.message??'');
+        }
       }
     });
   }

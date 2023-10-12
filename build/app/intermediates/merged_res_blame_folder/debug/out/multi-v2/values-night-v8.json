@@ -4,7 +4,7 @@
             "outputFile": "com.example.crack_it_user.app-mergeDebugResources-9:/values-night-v8/values-night-v8.xml",
             "map": [
                 {
-                    "source": "/Users/admin/Documents/kuldeep_-flutter_project/crack_it_user/android/app/src/main/res/values-night/styles.xml",
+                    "source": "/Users/admin/Documents/kuldeep_-flutter_project/crack_it/android/app/src/main/res/values-night/styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",

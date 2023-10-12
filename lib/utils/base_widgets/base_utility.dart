@@ -57,6 +57,17 @@ String getFormattedTimeWithMonth(String dateString1) {
   }
 }
 
+String getFormattedMonth(String dateString1) {
+  if (dateString1.isNotEmpty && dateString1 != "null") {
+    DateTime date = DateTime.parse(dateString1);
+    String formattedTime =
+    DateFormat('EEE dd MMM').format(date);
+    return formattedTime;
+  } else {
+    return "";
+  }
+}
+
 
 String getFormattedTime3(String dateString1) {
   if (dateString1.isNotEmpty && dateString1 != "null") {

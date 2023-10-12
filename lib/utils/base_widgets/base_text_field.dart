@@ -47,9 +47,7 @@ class BaseTextField extends StatelessWidget {
         maxLines: maxLines,
         readOnly: readOnly,
         onTap: onTap,
-        onChanged: (value){
-         onChanged!(value);
-        },
+        onChanged: onChanged,
         obscureText: obscureText,
         controller: controller,
         decoration: InputDecoration(
@@ -57,7 +55,7 @@ class BaseTextField extends StatelessWidget {
           fillColor: fillColor ?? Colors.transparent,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(radius ?? 10),
-            borderSide: BorderSide(color: borderGrayColor),
+            borderSide: const BorderSide(color: borderGrayColor),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(radius ?? 10),

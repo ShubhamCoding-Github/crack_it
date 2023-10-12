@@ -1,6 +1,9 @@
 import 'package:crack_it_user/response_modal/login_response_modal.dart';
 import 'package:crack_it_user/storage/base_shared_preference.dart';
 import 'package:crack_it_user/storage/sp_keys.dart';
+import 'package:crack_it_user/views/category/controller/category_controller.dart';
+import 'package:crack_it_user/views/profile/profile_controller.dart';
+import 'package:crack_it_user/views/wallet/controller/wallet_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

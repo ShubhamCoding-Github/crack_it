@@ -10,4 +10,11 @@ class ApiEndPoints{
   static String getTimeZone='timezone/get/all';
   static String createBooking='booking/create';
   static String getExpertList='expert/get/all';
+  static String getExpertProfile='expert/get/profile/';
+  static String getBookingList='booking/get-all';
+  static String getSingleBooking='booking/single/';
+  static String getWallet='wallet/get/';
+  static String getPayments='booking/payments';
+  static String cancelBooking='booking/cancel/';
+  static String acceptBooking='booking/accept/';
 }

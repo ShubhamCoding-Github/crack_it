@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="55" height="55" viewBox="0 0 55 55">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="path1581" d="M0-682.665H30v30H0Z" transform="translate(0 682.665)"/>
+    </clipPath>
+  </defs>
+  <g id="Group_264" data-name="Group 264" transform="translate(-188 -542)">
+    <g id="Rectangle_160" data-name="Rectangle 160" transform="translate(188 542)" fill="#fff" stroke="#01d866" stroke-width="1">
+      <rect width="55" height="55" rx="27.5" stroke="none"/>
+      <rect x="0.5" y="0.5" width="54" height="54" rx="27" fill="none"/>
+    </g>
+    <g id="g1575" transform="translate(201 1237.665)">
+      <g id="g1577" transform="translate(0 -682.665)">
+        <g id="g1579" clip-path="url(#clip-path)">
+          <g id="g1585" transform="translate(0.879 2.732)">
+            <path id="path1587" d="M0-54.689v15.2l4.832-3.447a3.256,3.256,0,0,1,1.891-.605H17.351a2.514,2.514,0,0,0,2.514-2.514V-57.2H2.514A2.514,2.514,0,0,0,0-54.689Z" transform="translate(0 57.203)" fill="none" stroke="#01d866" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+          </g>
+          <g id="g1589" transform="translate(9.256 9.549)">
+            <path id="path1591" d="M-326.41,0h2.348a2.514,2.514,0,0,1,2.514,2.514v15.2l-4.832-3.447a3.256,3.256,0,0,0-1.891-.605H-338.9a2.514,2.514,0,0,1-2.514-2.514v-.787" transform="translate(341.414)" fill="none" stroke="#01d866" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+          </g>
+          <g id="g1593" transform="translate(6.32 7.52)">
+            <path id="path1595" d="M-220.917,0h-10.155" transform="translate(231.071 0)" fill="none" stroke="#01d866" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+          </g>
+          <g id="g1597" transform="translate(6.32 11.622)">
+            <path id="path1599" d="M-220.917,0h-10.155" transform="translate(231.071 0)" fill="none" stroke="#01d866" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

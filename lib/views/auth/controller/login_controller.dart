@@ -73,7 +73,8 @@ class LoginController extends GetxController{
   Future<void> login()async{
     Map<String,dynamic> param={
       "email":emailCtrl.text,
-      "password":passwordCtrl.text
+      "password":passwordCtrl.text,
+      "type":"app"
     };
    await BaseAPI().post(url:ApiEndPoints.loginUser,data: param).then((value) {
       if(value!=null){

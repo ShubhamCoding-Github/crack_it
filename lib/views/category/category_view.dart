@@ -17,6 +17,7 @@ class CategoryView extends StatefulWidget {
 
 class _CategoryViewState extends State<CategoryView> {
   CategoryController controller = Get.put(CategoryController());
+
   List<String> images = [
     'assets/icons/1.svg',
     'assets/icons/2.svg',

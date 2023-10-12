@@ -17,7 +17,6 @@ class PaymentView extends StatefulWidget {
 }
 
 class _PaymentViewState extends State<PaymentView> {
-  CategoryController controller =Get.find<CategoryController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
