@@ -29,9 +29,7 @@ String formatBackendDate(String dateString,
 }
 
 String formatTime(DateTime dateTime) {
-  String amPm = 'am';
   if (dateTime.hour >= 12) {
-    amPm = 'pm';
   }
 
   String hour = dateTime.hour.toString();

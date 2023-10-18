@@ -98,7 +98,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   isPasswordVisible = !isPasswordVisible;
                   setState(() {});
                 },
-                child: Padding(
+                child: const Padding(
                   padding: EdgeInsets.only(right: 20),
                   child: BaseSvg(svgPath: icEye),
                 ),
@@ -116,7 +116,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   isConfirmPasswordVisible = !isConfirmPasswordVisible;
                   setState(() {});
                 },
-                child: Padding(
+                child: const Padding(
                   padding: EdgeInsets.only(right: 20),
                   child: BaseSvg(svgPath: icEye),
                 ),

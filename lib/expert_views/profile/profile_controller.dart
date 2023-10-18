@@ -3,9 +3,7 @@ import 'package:get/get.dart';
 import '../../backend/api_end_points.dart';
 import '../../backend/base_api.dart';
 import '../../base_controller.dart';
-import '../../response_modal/booking_list_modal.dart';
 import '../../response_modal/expert_profile_modal.dart';
-import '../../response_modal/profile_response_modal.dart';
 import '../../storage/base_overlays.dart';
 
 class ExpertProfileController extends GetxController {

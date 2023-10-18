@@ -7,6 +7,7 @@ import '../../utils/base_widgets/base_button.dart';
 import '../../utils/base_widgets/base_text.dart';
 import '../../utils/base_widgets/base_text_field.dart';
 import '../../utils/constants/base_sizes.dart';
+import 'add_bank_controller.dart';
 
 class AddUPIScreen extends StatefulWidget {
   const AddUPIScreen({super.key});
@@ -16,6 +17,9 @@ class AddUPIScreen extends StatefulWidget {
 }
 
 class _AddUPIScreenState extends State<AddUPIScreen> {
+  AddBankController controller=Get.put(AddBankController());
+  Rx<TextEditingController> upiID = TextEditingController().obs;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,6 +32,7 @@ class _AddUPIScreenState extends State<AddUPIScreen> {
         child: Column(
           children: [
             BaseTextField(
+              controller: upiID.value,
               labelText: 'UPI Id',
               bottomMargin: 20,
             ),
@@ -36,6 +41,12 @@ class _AddUPIScreenState extends State<AddUPIScreen> {
               bottomMargin: 40,
               title: 'SAVE',
               onTap: () {
+                Map param = {
+                  "user": "64f6cbc30c64f2d23d76cd11",
+                  "type": "UPI",
+                  "upiId": upiID.value,
+                };
+                controller.postProfileDetails(param: param);
                 Get.back();
               },
             ),

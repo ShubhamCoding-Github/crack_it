@@ -8,7 +8,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../../base_controller.dart';
-import '../../../response_modal/booking_list_modal.dart';
 import '../../../utils/base_widgets/base_svg.dart';
 import '../../../utils/base_widgets/base_utility.dart';
 import '../../dashboard/controller/dashboard_controller.dart';
@@ -73,7 +72,7 @@ class _CancelBookingTabViewState extends State<CancelBookingTabView> {
                                     ),
                                     Text(
                                       controller.list[index].date!=null?getFormattedMonth(controller.list[index].date!):'',
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 18, color: blackColor),
                                     ),
                                     const SizedBox(width: 12),
@@ -86,14 +85,14 @@ class _CancelBookingTabViewState extends State<CancelBookingTabView> {
                                     const SizedBox(width: 12),
                                     Text(
                                       "${controller.list[index].startTime!=null?getFormattedTime3(controller.list[index].startTime!):""} - ${controller.list[index].endTime!=null?getFormattedTime3(controller.list[index].endTime!):""}",
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 18, color: blackColor),
                                     ),
                                   ],
                                 ),
                               ],
                             ),
-                            BaseSvg(svgPath: 'assets/icons/dots.svg')
+                            const BaseSvg(svgPath: 'assets/icons/dots.svg')
                           ],
                         ),
                         const Divider(
@@ -114,14 +113,14 @@ class _CancelBookingTabViewState extends State<CancelBookingTabView> {
                                     children: [
                                       Text(
                                         "${controller.list[index].user?.firstName??''} ${controller.list[index].user?.lastName?[0].capitalizeFirst??''}",
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             fontSize: 24,
                                             color: blackColor,
                                             fontWeight: FontWeight.bold),
                                       ),
                                       Text(
                                         controller.list[index].jobCategory?.title??'',
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             fontSize: 16, color: textGrayColor),
                                       ),
                                     ],
@@ -137,14 +136,14 @@ class _CancelBookingTabViewState extends State<CancelBookingTabView> {
                                     children: [
                                       Text(
                                         "${controller.list[index].expert?.firstName??''} ${controller.list[index].expert?.lastName?[0].capitalizeFirst??''}",
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             fontSize: 24,
                                             color: blackColor,
                                             fontWeight: FontWeight.bold),
                                       ),
                                       Text(
                                         "${controller.list[index].jobCategory?.title??''} | ${controller.list[index].expertData?.experience??''} year",
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             fontSize: 16, color: textGrayColor),
                                       ),
                                     ],
@@ -152,8 +151,8 @@ class _CancelBookingTabViewState extends State<CancelBookingTabView> {
                                 ],
                               ),
                             ),
-                            const BaseText(
-                              'Cancelled',
+                           BaseText(
+                            (controller.list[index].status??''),
                               color: redColor,
                               fontSize: fs14,
                               fontWeight: FontWeight.w500,

@@ -7,6 +7,7 @@ import '../../utils/base_widgets/base_button.dart';
 import '../../utils/base_widgets/base_text.dart';
 import '../../utils/base_widgets/base_text_field.dart';
 import '../../utils/constants/base_sizes.dart';
+import 'add_bank_controller.dart';
 
 class AddBankScreen extends StatefulWidget {
   const AddBankScreen({super.key});
@@ -16,10 +17,18 @@ class AddBankScreen extends StatefulWidget {
 }
 
 class _AddBankScreenState extends State<AddBankScreen> {
+  AddBankController controller=Get.put(AddBankController());
+  Rx<TextEditingController> bankName = TextEditingController().obs;
+  Rx<TextEditingController> accountName = TextEditingController().obs;
+  Rx<TextEditingController> accountNumber = TextEditingController().obs;
+  Rx<TextEditingController> ifscCode = TextEditingController().obs;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const BaseAppBar(
+      appBar: BaseAppBar(
+        onBackPressed: (){
+          Get.back();
+        },
         title: "Add Bank Details",
         isNotificationVisible: false,
       ),
@@ -27,19 +36,23 @@ class _AddBankScreenState extends State<AddBankScreen> {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            BaseTextField(
+          BaseTextField(
+              controller: bankName.value,
               labelText: 'Bank Name',
               bottomMargin: 20,
             ),
-            BaseTextField(
+          BaseTextField(
+            controller: accountName.value,
               labelText: 'Account Name',
               bottomMargin: 20,
             ),
             BaseTextField(
+              controller: accountNumber.value,
               labelText: 'Account Number',
               bottomMargin: 20,
             ),
-            BaseTextField(
+             BaseTextField(
+              controller: ifscCode.value,
               labelText: 'IFSC Code',
               bottomMargin: 20,
             ),
@@ -48,6 +61,13 @@ class _AddBankScreenState extends State<AddBankScreen> {
               bottomMargin: 40,
               title: 'SAVE',
               onTap: () {
+                Map<String, dynamic> param = {
+                  "bankName": bankName.value,
+                  "accountName": accountName.value,
+                  " accountNo": accountNumber.value,
+                  "ifscCode": ifscCode.value,
+                };
+                controller.postProfileDetails(param: param);
                 Get.back();
               },
             ),

@@ -10,6 +10,7 @@ class WalletController extends GetxController{
   RxString walletAmount='0'.obs;
   RxList<Payment> list=<Payment>[].obs;
 
+
   @override
   void onInit() {
     print('ControllerTwo onInit');

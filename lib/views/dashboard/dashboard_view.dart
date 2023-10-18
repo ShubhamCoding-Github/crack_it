@@ -5,7 +5,6 @@ import 'package:crack_it_user/views/booking/booking_base_view.dart';
 import 'package:crack_it_user/views/category/category_view.dart';
 import 'package:crack_it_user/views/chat/chat_list_view.dart';
 import 'package:crack_it_user/views/profile/my_profile_view.dart';
-import 'package:crack_it_user/views/wallet/controller/wallet_controller.dart';
 import 'package:crack_it_user/views/wallet/wallet_view.dart';
 import 'package:flutter/material.dart';
 import 'package:dot_navigation_bar/dot_navigation_bar.dart';
@@ -53,20 +52,19 @@ class _DashboardViewState extends State<DashboardView> {
         ? primaryColor
         : Colors.white;
   }
-
   final List<Widget> _pagesUser = [
-    ChatView(),
-    MyBookingBaseView(),
-    CategoryView(),
-    WalletView(),
-    MyProfileView(),
+    const ChatView(),
+    const MyBookingBaseView(),
+    const CategoryView(),
+    const WalletView(),
+    const MyProfileView(),
   ];
 
   final List<Widget> _pagesExpert = [
-    ChatView(),
-    MyBookingBaseView(),
-    WalletView(),
-    MyProfileViewExpert(),
+    const ChatView(),
+    const MyBookingBaseView(),
+    const WalletView(),
+    const MyProfileViewExpert(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -87,29 +85,29 @@ class _DashboardViewState extends State<DashboardView> {
         items: [
           DotNavigationBarItem(
             icon: SvgPicture.asset(massageIc, color: _getSelectedColor(0)),
-            selectedColor: Color(0xff73544C),
+            selectedColor: const Color(0xff73544C),
           ),
 
           DotNavigationBarItem(
             icon: SvgPicture.asset(bookIc, color: _getSelectedColor(1)),
-            selectedColor: Color(0xff73544C),
+            selectedColor: const Color(0xff73544C),
           ),
 
           if(role.toUpperCase()=="USER")...[
           DotNavigationBarItem(
             icon: SvgPicture.asset(addIc),
-            selectedColor: Color(0xff73544C),
+            selectedColor: const Color(0xff73544C),
           )],
           /// Profile
           DotNavigationBarItem(
-            icon: SvgPicture.asset(walletIc, color: _getSelectedColor(role.toUpperCase()=="USER"?2:3)),
-            selectedColor: Color(0xff73544C),
+            icon: SvgPicture.asset(walletIc, color: _getSelectedColor(role.toUpperCase()=="USER"?3:2)),
+            selectedColor: const Color(0xff73544C),
           ),
 
           /// Profile
           DotNavigationBarItem(
-            icon: SvgPicture.asset(userIc, color: _getSelectedColor(role.toUpperCase()=="USER"?3:4)),
-            selectedColor: Color(0xff73544C),
+            icon: SvgPicture.asset(userIc, color: _getSelectedColor(role.toUpperCase()=="USER"?4:3)),
+            selectedColor: const Color(0xff73544C),
           ),
         ],
       ),

@@ -3,10 +3,12 @@ import 'package:crack_it_user/utils/base_widgets/base_button.dart';
 import 'package:crack_it_user/utils/constants/base_colors.dart';
 import 'package:crack_it_user/utils/constants/base_images.dart';
 import 'package:crack_it_user/utils/constants/base_sizes.dart';
-import 'package:crack_it_user/views/auth/login_screen/login_screen.dart';
+import 'package:crack_it_user/views/auth/controller/choose_role.dart';
+import 'package:crack_it_user/views/profile/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+
 
 class CustomDialog extends StatelessWidget {
   const CustomDialog({super.key});
@@ -126,7 +128,7 @@ void showLogoutAccountDialogue(BuildContext context) {
                                     child: BaseButton(
                                       onTap: () {
                                         BaseSharedPreference().clearAllSharedPreference();
-                                        Get.offAll(() => LoginScreen());
+                                        Get.offAll(() => ChooseRole());
                                       },
                                       title: "Yes",
                                       fontSize: fs14,
@@ -188,7 +190,7 @@ void showBookingCancelDialogue(BuildContext context,{required Function() onTap})
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 20.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
                         child: Column(
                           children: [
                             SvgPicture.asset(warningIc),
@@ -255,6 +257,7 @@ void showBookingCancelDialogue(BuildContext context,{required Function() onTap})
 }
 
 void showDeleteAccountDialogue(BuildContext context) {
+  ProfileController controller=Get.find<ProfileController>();
   showGeneralDialog(
       barrierColor: Colors.black.withOpacity(0.5),
       transitionBuilder: (context, a1, a2, widget) {
@@ -320,9 +323,10 @@ void showDeleteAccountDialogue(BuildContext context) {
                                     width: 80,
                                     height: 34,
                                     child: BaseButton(
-                                      onTap: () {
-                                        Get.back();
-                                      },
+                                        onTap: () {
+                                          controller.deleteAccountPermanent();
+                                        },
+
                                       title: "Yes",
                                       fontSize: fs14,
                                     )),

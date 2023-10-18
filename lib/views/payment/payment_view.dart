@@ -4,19 +4,23 @@ import 'package:crack_it_user/utils/base_widgets/base_dialog.dart';
 import 'package:crack_it_user/utils/base_widgets/base_text_field.dart';
 import 'package:crack_it_user/utils/constants/base_colors.dart';
 import 'package:crack_it_user/utils/constants/base_images.dart';
-import 'package:crack_it_user/views/category/controller/category_controller.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+
 class PaymentView extends StatefulWidget {
-  const PaymentView({super.key});
+  final String name;
+  final String jobCategory;
+  const PaymentView({super.key, required this.name, required this.jobCategory});
 
   @override
   State<PaymentView> createState() => _PaymentViewState();
 }
 
 class _PaymentViewState extends State<PaymentView> {
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,8 +51,8 @@ class _PaymentViewState extends State<PaymentView> {
                     ),
                   ],
                 ),
-                const baseExpertCard(
-                  index: 1,
+                 baseExpertCard(
+                  index: 1, name:widget.name,jobCategory: widget.jobCategory,
                 ),
                 const SizedBox(
                   height: 30,
@@ -126,7 +130,7 @@ class _PaymentViewState extends State<PaymentView> {
                     showDialog(
                       context: context,
                       builder: (BuildContext context) {
-                        return CustomDialog();
+                        return const CustomDialog();
                       },
                     );
                   },
@@ -141,13 +145,16 @@ class _PaymentViewState extends State<PaymentView> {
 }
 
 class baseExpertCard extends StatelessWidget {
-  const baseExpertCard({
+   baseExpertCard({
     super.key,
     required this.index,
+    required this.name,
+     required this.jobCategory,
   });
 
   final int index;
-
+  final String name;
+  final String jobCategory;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -179,21 +186,21 @@ class baseExpertCard extends StatelessWidget {
                 width: 65,
               ),
               const SizedBox(width: 12),
-              const Column(
+                Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Jaxen C",
-                    style: TextStyle(
+                     name,
+                    style: const TextStyle(
                         fontSize: 24,
                         color: blackColor,
                         fontWeight: FontWeight.bold),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(vertical: 4),
+                    padding: const EdgeInsets.symmetric(vertical: 4),
                     child: Text(
-                      "Front-end Expert | 5 year",
-                      style: TextStyle(fontSize: 16, color: textGrayColor),
+                     jobCategory,
+                      style: const TextStyle(fontSize: 16, color: textGrayColor),
                     ),
                   ),
                 ],

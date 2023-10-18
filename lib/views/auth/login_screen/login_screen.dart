@@ -11,10 +11,12 @@ import 'package:crack_it_user/utils/constants/base_strings.dart';
 import 'package:crack_it_user/views/auth/controller/login_controller.dart';
 import 'package:crack_it_user/views/auth/forgot_password_screen.dart';
 import 'package:crack_it_user/views/auth/sign_up_screen/sign_up_screen.dart';
-import 'package:crack_it_user/views/dashboard/dashboard_view.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../storage/base_shared_preference.dart';
+import '../../../storage/sp_keys.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -25,6 +27,16 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   LoginController controller = Get.put(LoginController());
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getRole();
+  }
+   Future<void> getRole()async{
+   controller.role.value= await BaseSharedPreference().getString(SpKeys.role)??'';
+   }
+
   @override
   Widget build(BuildContext context) {
       return Scaffold(
@@ -96,36 +108,41 @@ class _LoginScreenState extends State<LoginScreen> {
             ],
           ),
         ),
-        bottomNavigationBar: FadeInUp(
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 40),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text.rich(
-                  TextSpan(
-                    children: [
-                      const TextSpan(
-                          text: strDontHaveAnAccount,
-                          style: TextStyle(fontSize: fs16)),
-                      TextSpan(
-                        text: strSignUp,
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            Get.to(const SignUpScreen());
-                          },
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: primaryColor,
-                            fontSize: fs16),
-                      ),
-                    ],
+        bottomNavigationBar:
+      Obx(() => Visibility(
+         visible:  controller.role.value=='user',
+         child: FadeInUp(
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 40),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text.rich(
+                    TextSpan(
+                      children: [
+                        const TextSpan(
+                            text: strDontHaveAnAccount,
+                            style: TextStyle(fontSize: fs16)),
+                        TextSpan(
+                          text: strSignUp,
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Get.to(const SignUpScreen());
+
+                            },
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: primaryColor,
+                              fontSize: fs16),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-        ),
+       )),
       );
   }
 }

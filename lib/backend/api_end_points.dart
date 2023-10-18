@@ -16,5 +16,9 @@ class ApiEndPoints{
   static String getWallet='wallet/get/';
   static String getPayments='booking/payments';
   static String cancelBooking='booking/cancel/';
+  static String declineBooking='booking/decline/';
   static String acceptBooking='booking/accept/';
+  static String deleteAccountPermanent='auth/user/permanent/delete/';
+  static String addBankDetails='bank/add';
+  static String expertProfileSetup ='expert/profile/setup';
 }

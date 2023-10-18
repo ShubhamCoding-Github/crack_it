@@ -365,7 +365,7 @@ class _CustomGridWidgetState extends State<CustomGridWidget> {
   Widget build(BuildContext context) {
     return Obx(() =>GridView.builder(
         itemCount:controller.subTypeCategories.length, // Total number of containers (3 per row)
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3, // Number of columns per row
           childAspectRatio: 2, // Adjust the aspect ratio here
         ),

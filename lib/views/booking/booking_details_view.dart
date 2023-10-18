@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-import '../../response_modal/booking_list_modal.dart';
 
 class MyBookingDetailsView extends StatefulWidget {
   final String id;

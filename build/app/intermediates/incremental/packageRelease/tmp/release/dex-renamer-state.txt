@@ -1,0 +1,4 @@
+#Tue Oct 17 18:38:32 IST 2023
+base.0=/Users/admin/Desktop/crack_it/build/app/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

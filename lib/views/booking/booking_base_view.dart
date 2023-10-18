@@ -3,7 +3,6 @@ import 'package:crack_it_user/utils/base_widgets/base_app_bar.dart';
 import 'package:crack_it_user/utils/constants/base_colors.dart';
 import 'package:crack_it_user/views/booking/booking_tab_view.dart';
 import 'package:crack_it_user/views/booking/sub_pages/cancled_booking_view.dart';
-import 'package:crack_it_user/views/booking/sub_pages/past_booking_view.dart';
 import 'package:crack_it_user/views/booking/sub_pages/requested_booking_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

@@ -20,12 +20,17 @@ class WithdrawScreen extends StatefulWidget {
 }
 
 class _WithdrawScreenState extends State<WithdrawScreen> {
+
+
   List<bool> radioList = [true, false];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: const BaseAppBar(
+      appBar: BaseAppBar(
+        onBackPressed:() {
+          Get.back();
+        },
         title: "Withdraw Amount",
       ),
       body: Padding(
@@ -175,7 +180,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
               fontWeight: FontWeight.bold,
               color: blackColor,
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             BaseButton(

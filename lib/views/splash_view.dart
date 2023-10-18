@@ -7,6 +7,7 @@ import 'package:crack_it_user/views/introduction/intro_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../expert_views/profile_setup/profile_setup_screen.dart';
 import '../storage/base_shared_preference.dart';
 import '../storage/sp_keys.dart';
 
@@ -23,9 +24,20 @@ class _SplashViewState extends State<SplashView> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 2), ()async {
+
+      String role=await BaseSharedPreference().getString(SpKeys.role)??'';
       bool isLoggedIn = await BaseSharedPreference().getBool(SpKeys.isLoggedIn)??false;
       if(isLoggedIn){
-        Get.offAll(const DashboardView());
+        if(role=="user"){
+          Get.offAll(const DashboardView());
+        }else {
+           if(controller.user?.isExpertProfileVerified??false)
+             {
+               Get.offAll(()=>const DashboardView());
+             }else{
+             Get.offAll(()=>const ProfileSetupScreen());
+           }
+        }
        }else{
         Get.offAll(const IntroductionScreen());
       }

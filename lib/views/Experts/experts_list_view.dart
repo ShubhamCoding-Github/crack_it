@@ -7,8 +7,6 @@ import 'package:crack_it_user/utils/constants/base_sizes.dart';
 import 'package:crack_it_user/views/Experts/experts_profile.dart';
 import 'package:crack_it_user/views/category/controller/category_controller.dart';
 import 'package:crack_it_user/views/dashboard/dashboard_view.dart';
-import 'package:crack_it_user/views/payment/payment_view.dart';
-import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';

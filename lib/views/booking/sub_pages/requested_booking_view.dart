@@ -20,7 +20,6 @@ class RequestedBookingTabView extends StatefulWidget {
   @override
   State<RequestedBookingTabView> createState() => _RequestedBookingTabViewState();
 }
-
 class _RequestedBookingTabViewState extends State<RequestedBookingTabView> {
   DashBoardController controller=Get.find<DashBoardController>();
   String role='';
@@ -74,7 +73,7 @@ class _RequestedBookingTabViewState extends State<RequestedBookingTabView> {
                                 ),
                                  Text(
                                   controller.list[index].date!=null?getFormattedMonth(controller.list[index].date!):'',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 18, color: blackColor),
                                 ),
                                 const SizedBox(width: 12),
@@ -87,14 +86,14 @@ class _RequestedBookingTabViewState extends State<RequestedBookingTabView> {
                                 const SizedBox(width: 12),
                                  Text(
                                   "${controller.list[index].startTime!=null?getFormattedTime3(controller.list[index].startTime!):""} - ${controller.list[index].endTime!=null?getFormattedTime3(controller.list[index].endTime!):""}",
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 18, color: blackColor),
                                 ),
                               ],
                             ),
                           ],
                         ),
-                        BaseSvg(svgPath: 'assets/icons/dots.svg')
+                        const BaseSvg(svgPath: 'assets/icons/dots.svg')
                       ],
                     ),
                     const Divider(
@@ -115,14 +114,14 @@ class _RequestedBookingTabViewState extends State<RequestedBookingTabView> {
                                 children: [
                                   Text(
                                     "${controller.list[index].expert?.firstName??''} ${controller.list[index].expert?.lastName?[0].capitalizeFirst??''}",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 24,
                                         color: blackColor,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Text(
                                     "${controller.list[index].jobCategory?.title??''} | ${controller.list[index].expertData?.experience??''} year",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 16, color: textGrayColor),
                                   ),
                                 ],
@@ -138,7 +137,7 @@ class _RequestedBookingTabViewState extends State<RequestedBookingTabView> {
                                     height: 34,
                                     child: GestureDetector(
                                       onTap: (){
-                                        Get.to(()=>const PaymentView());
+                                        Get.to(()=> PaymentView( name:"${controller.list[index].expert?.firstName??''} ${controller.list[index].expert?.lastName?[0].capitalizeFirst??''}", jobCategory:"${controller.list[index].jobCategory?.title??''} | ${controller.list[index].expertData?.experience??''} year",));
                                       },
                                       child: const BaseButton(
                                         title: "Pay Now",
@@ -181,45 +180,57 @@ class _RequestedBookingTabViewState extends State<RequestedBookingTabView> {
                                 children: [
                                   Text(
                                     "${controller.list[index].user?.firstName??''} ${controller.list[index].user?.lastName?[0].capitalizeFirst??''}",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 24,
                                         color: blackColor,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Text(
                                     controller.list[index].jobCategory?.title??'',
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 16, color: textGrayColor),
                                   ),
                                 ],
                               ),
                             ],
                           ),
-                          const SizedBox(height: 20,),
-                          Row(
-                            children: [
-                              const SizedBox(width: 50),
-                              Expanded(
-                                  child: BaseButtonWithoutBackground(
-                                    btnHeight: 40,
-                                    onTap: () {
-                                      controller.cancelBooking(id:controller.list[index].sId!);
-                                    },
-                                    title: "Decline",
-                                    btnColor: whiteColor,
-                                    fontSize: fs14,
-                                  )),
-                              const SizedBox(width: 20),
-                              Expanded(
-                                  child: BaseButton(
-                                    btnHeight: 40,
-                                    onTap: () {
-                                      controller.acceptBooking(id: controller.list[index].sId!);
-                                    },
-                                    title: "Accept",
-                                    fontSize: fs14,
-                                  )),
-                            ],
+                          const SizedBox(height: 20),
+                          Visibility(
+                            visible: (controller.list[index].status??'').toUpperCase()=="REQUESTED",
+                            child: Row(
+                              children: [
+                              SizedBox(width: 50),
+                                Expanded(
+                                    child: BaseButtonWithoutBackground(
+                                      btnHeight: 40,
+                                      onTap: () {
+                                        controller.declineBooking(id:controller.list[index].sId!);
+                                      },
+                                      title: "Decline",
+                                      btnColor: whiteColor,
+                                      fontSize: fs14,
+                                    )),
+                                SizedBox(width: 20),
+                                Expanded(
+                                    child: BaseButton(
+                                      btnHeight: 40,
+                                      onTap: () {
+                                        controller.acceptBooking(id: controller.list[index].sId!);
+                                      },
+                                      title: "Accept",
+                                      fontSize: fs14,
+                                    )),
+                              ],
+                            ),
+                            replacement:  BaseButtonWithoutBackground(
+                              btnHeight: 40,
+                              onTap: () {
+                                controller.cancelBooking(id:controller.list[index].sId!);
+                              },
+                              title: "Cancel",
+                              btnColor: whiteColor,
+                              fontSize: fs14,
+                            ),
                           ),
                         ],
                       ),

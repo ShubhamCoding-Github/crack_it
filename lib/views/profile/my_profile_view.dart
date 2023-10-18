@@ -5,10 +5,12 @@ import 'package:crack_it_user/utils/base_widgets/base_text.dart';
 import 'package:crack_it_user/utils/constants/base_colors.dart';
 import 'package:crack_it_user/utils/constants/base_images.dart';
 import 'package:crack_it_user/utils/constants/base_sizes.dart';
+import 'package:crack_it_user/views/profile/booking_history.dart';
 import 'package:crack_it_user/views/profile/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+
 
 class MyProfileView extends StatefulWidget {
   const MyProfileView({super.key});
@@ -61,17 +63,17 @@ class _MyProfileViewState extends State<MyProfileView> {
                           child:  Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                SizedBox(
+                                const SizedBox(
                                   height: 20,
                                 ),
                                 Text(
                                   "${controller.profile.value.firstName??''} ${controller.profile.value.lastName?[0].capitalizeFirst??''}",
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: fs24,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                Padding(
+                                const Padding(
                                   padding: EdgeInsets.symmetric(vertical: 8),
                                   child: Text(
                                     "User Experience & Motion Design",
@@ -108,36 +110,36 @@ class _MyProfileViewState extends State<MyProfileView> {
               ),
               const SizedBox(height: 10),
                Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8.0),
                 child: Obx(() =>Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(width: 1),
+                    const SizedBox(width: 1),
                     Row(
                       children: [
-                        BaseSvg(svgPath: 'assets/icons/email.svg'),
-                        SizedBox(width: 10),
+                        const BaseSvg(svgPath: 'assets/icons/email.svg'),
+                        const SizedBox(width: 10),
                         BaseText(
                           controller.profile.value.email??'',
                           fontSize: 13,
                         )
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                       child: VerticalDivider(color: Colors.black),
                     ),
                     Row(
                       children: [
-                        BaseSvg(svgPath: 'assets/icons/phone-call.svg'),
-                        SizedBox(width: 10),
+                        const BaseSvg(svgPath: 'assets/icons/phone-call.svg'),
+                        const SizedBox(width: 10),
                         BaseText(
                           "${controller.profile.value.countryCode??''} ${controller.profile.value.phone??''}",
                           fontSize: 13,
                         )
                       ],
                     ),
-                    SizedBox(width: 1),
+                    const SizedBox(width: 1),
                   ],
                 )),
               ),
@@ -171,7 +173,7 @@ class _MyProfileViewState extends State<MyProfileView> {
               ),
               GestureDetector(
                 onTap: () {
-                  // showDeleteAccountDialogue(context);
+                Get.to(const BookingHistory());
                 },
                 child: Container(
                   margin: const EdgeInsets.symmetric(vertical: 12),
@@ -273,4 +275,5 @@ class _MyProfileViewState extends State<MyProfileView> {
       ),
     );
   }
+
 }

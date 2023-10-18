@@ -39,7 +39,7 @@ class DashBoardController extends GetxController{
   }
 
  Future<void> cancelBooking({required String id}) async {
-     BaseAPI().put(url: ApiEndPoints.cancelBooking+id,data: data).then((value){
+     BaseAPI().put(url: ApiEndPoints.cancelBooking+id).then((value){
        if (value!=null) {
         CommonResponse response = CommonResponse.fromJson(value.data);
         if(response.success??false){
@@ -51,9 +51,22 @@ class DashBoardController extends GetxController{
        }
      });
  }
+ Future<void> declineBooking({required String id}) async {
+   BaseAPI().put(url: ApiEndPoints.declineBooking+id).then((value){
+     if (value!=null) {
+       CommonResponse response = CommonResponse.fromJson(value.data);
+       if(response.success??false){
+         BaseOverlays().showSnackBar(message: response.message??"", title: "Success");
+         getBookingList();
+       }else{
+         BaseOverlays().showSnackBar(message: response.message??"", title: "Error");
+       }
+     }
+   });
+ }
 
  Future<void> acceptBooking({required String id}) async {
-   BaseAPI().put(url: ApiEndPoints.acceptBooking+id,data: data).then((value){
+   BaseAPI().put(url: ApiEndPoints.acceptBooking+id).then((value){
      if (value!=null) {
        CommonResponse response = CommonResponse.fromJson(value.data);
        if(response.success??false){

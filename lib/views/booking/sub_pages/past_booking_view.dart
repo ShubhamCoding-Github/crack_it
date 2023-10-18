@@ -1,4 +1,3 @@
-import 'package:crack_it_user/response_modal/booking_list_modal.dart';
 import 'package:crack_it_user/utils/constants/base_colors.dart';
 import 'package:crack_it_user/utils/constants/base_images.dart';
 import 'package:crack_it_user/views/booking/booking_details_view.dart';

@@ -8,7 +8,6 @@ import 'package:crack_it_user/utils/constants/base_images.dart';
 import 'package:crack_it_user/utils/constants/base_sizes.dart';
 import 'package:crack_it_user/utils/constants/base_strings.dart';
 import 'package:crack_it_user/views/auth/controller/recovery_controller.dart';
-import 'package:crack_it_user/views/auth/verify_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

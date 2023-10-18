@@ -8,11 +8,13 @@ import 'package:get/get.dart';
 
 import '../../../backend/api_end_points.dart';
 import '../../../backend/base_api.dart';
+import '../../../expert_views/profile_setup/profile_setup_screen.dart';
 import '../../../storage/base_overlays.dart';
 
 class LoginController extends GetxController{
    TextEditingController emailCtrl=TextEditingController();
    TextEditingController passwordCtrl=TextEditingController();
+   RxString role='user'.obs;
   RxBool hidePassword = false.obs;
   List<Map<String, dynamic>> languageList = [
     {'language': 'US English', 'isSelected': false},
@@ -72,8 +74,8 @@ class LoginController extends GetxController{
 
   Future<void> login()async{
     Map<String,dynamic> param={
-      "email":emailCtrl.text,
-      "password":passwordCtrl.text,
+      "email":emailCtrl.text.trim(),
+      "password":passwordCtrl.text.trim(),
       "type":"app"
     };
    await BaseAPI().post(url:ApiEndPoints.loginUser,data: param).then((value) {
@@ -84,7 +86,15 @@ class LoginController extends GetxController{
           BaseSharedPreference().setBool(SpKeys.isLoggedIn,true);
           BaseSharedPreference().setJson(SpKeys.user,response.data?.user??{});
           Get.find<BaseController>().user=response.data?.user;
-          Get.offAll(()=>const DashboardView());
+          if((response.data?.user?.role??'').toUpperCase()=='USER'){
+            Get.offAll(() => const DashboardView());
+          }else {
+            if (response.data?.user?.isExpertProfileVerified ?? false) {
+              Get.offAll(() => const DashboardView());
+            } else {
+              Get.offAll(() => const ProfileSetupScreen());
+            }
+          }
           BaseOverlays().showSnackBar(message:response.message??'',title: "Success");
         }else{
           BaseOverlays().showSnackBar(message:response.message??'');

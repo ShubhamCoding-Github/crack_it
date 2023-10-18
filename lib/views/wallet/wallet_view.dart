@@ -38,6 +38,7 @@ class _WalletViewState extends State<WalletView> {
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Stack(
               children: [
@@ -57,12 +58,12 @@ class _WalletViewState extends State<WalletView> {
                         children: [
                           Text(
                             role.toUpperCase()=="USER"?"Wallet Amount":"Total Earning",
-                            style: TextStyle(color: whiteColor, fontSize: 16),
+                            style: const TextStyle(color: whiteColor, fontSize: 16),
                           ),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                          Obx(() =>  Text(
                             "\$ ${controller.walletAmount.value}",
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: whiteColor,
                                 fontSize: 40,
                                 fontWeight: FontWeight.bold),
@@ -94,18 +95,13 @@ class _WalletViewState extends State<WalletView> {
                         )
                         ]
                       ],
-                    ))
+                    )),
               ],
             ),
             const SizedBox(height: 16),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  "Transactions",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-              ],
+            const Text(
+              "Transactions",
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             Obx(() =>Expanded(
              child: ListView.builder(
@@ -132,12 +128,12 @@ class _WalletViewState extends State<WalletView> {
                                       children: [
                                         Text(
                                           "${controller.list[index].booking?.expert?.firstName??''} ${controller.list[index].booking?.expert?.lastName?[0].capitalizeFirst??''}",
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                               fontSize: 20,
                                               color: blackColor,
                                               fontWeight: FontWeight.bold),
                                         ),
-                                        Padding(
+                                        const Padding(
                                           padding: EdgeInsets.symmetric(vertical: 4),
                                           child: Text(
                                             "My progress getting better. Thank you",
@@ -153,14 +149,14 @@ class _WalletViewState extends State<WalletView> {
                                     index.isEven
                                         ?  Text(
                                       "+\$ ${controller.list[index].grandTotal.toString()}",
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 16,
                                           color: primaryColor,
                                           fontWeight: FontWeight.normal),
                                     )
                                         :  Column(
                                       children: [
-                                        Text(
+                                        const Text(
                                           "Pending",
                                           style: TextStyle(
                                               fontSize: 12,
@@ -169,7 +165,7 @@ class _WalletViewState extends State<WalletView> {
                                         ),
                                         Text(
                                           "\$ ${controller.list[index].grandTotal.toString()}",
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                               fontSize: 16,
                                               color: orangeColor,
                                               fontWeight: FontWeight.normal),

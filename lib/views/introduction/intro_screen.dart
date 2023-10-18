@@ -1,11 +1,12 @@
 import 'package:crack_it_user/utils/base_widgets/base_text.dart';
 import 'package:crack_it_user/utils/constants/base_colors.dart';
 import 'package:crack_it_user/utils/constants/base_sizes.dart';
-import 'package:crack_it_user/views/auth/login_screen/login_screen.dart';
 import 'package:crack_it_user/views/introduction/introduction_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+
+import '../auth/controller/choose_role.dart';
 
 class IntroductionScreen extends StatefulWidget {
   const IntroductionScreen({super.key});
@@ -83,7 +84,7 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
                               curve: Curves.linear);
                           setState(() {});
                         } else {
-                          Get.offAll(() => LoginScreen());
+                          Get.to(ChooseRole());
                         }
                       },
                       child: Container(

@@ -10,6 +10,7 @@ import '../../utils/base_widgets/base_dialog.dart';
 import '../../utils/constants/base_colors.dart';
 import '../../utils/constants/base_images.dart';
 import '../../utils/constants/base_sizes.dart';
+import '../../views/profile/profile_controller.dart';
 
 class MyProfileViewExpert extends StatefulWidget {
   const MyProfileViewExpert({super.key});
@@ -19,7 +20,8 @@ class MyProfileViewExpert extends StatefulWidget {
 }
 
 class _MyProfileViewExpertState extends State<MyProfileViewExpert> {
-  ExpertProfileController controller=Get.put(ExpertProfileController());
+  ExpertProfileController controller= Get.put(ExpertProfileController());
+  ProfileController ccontroller= Get.put(ProfileController());
   List<String> categoryList = [
     'HTML',
     'CSS',
@@ -80,21 +82,21 @@ class _MyProfileViewExpertState extends State<MyProfileViewExpert> {
                           child:  Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                SizedBox(
+                                const SizedBox(
                                   height: 20,
                                 ),
                                 Text(
                                   "${controller.profile.value.expert?.user?.firstName??''} ${controller.profile.value.expert?.user?.lastName?[0].capitalizeFirst??''}",
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: fs24,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 8),
+                                  padding: const EdgeInsets.symmetric(vertical: 8),
                                   child: Text(
                                     controller.profile.value.expert?.jobCategory?.title??'',
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: fs18,
                                         fontWeight: FontWeight.normal,
                                         color: textGrayColor),
@@ -136,10 +138,10 @@ class _MyProfileViewExpertState extends State<MyProfileViewExpert> {
                           children: [
                             SvgPicture.asset(starIc),
                              Padding(
-                              padding: EdgeInsets.all(13.0),
+                              padding: const EdgeInsets.all(13.0),
                               child: Text(
                                 controller.profile.value.rating!=null?controller.profile.value.rating.toString():'',
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 18, fontWeight: FontWeight.bold),
                               ),
                             )
@@ -176,16 +178,16 @@ class _MyProfileViewExpertState extends State<MyProfileViewExpert> {
                         Row(
                           children: [
                             Padding(
-                              padding: EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.all(8.0),
                               child: Text(
                                 "${controller.profile.value.expert?.experience??''} yrs",
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               ),
                             )
                           ],
                         ),
-                        Text(
+                        const Text(
                           "Experience",
                           style: TextStyle(fontSize: 16, color: textGrayColor),
                         )
@@ -212,17 +214,17 @@ class _MyProfileViewExpertState extends State<MyProfileViewExpert> {
               ),
                Text(
                  controller.profile.value.expert?.description??'',
-                style: TextStyle(
+                style: const TextStyle(
                     color: textGrayColor, fontSize: 15, letterSpacing: 0.6),
               ),
               const SizedBox(
                 height: 30,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text(
                       "Expertise",
                       style:
@@ -240,8 +242,8 @@ class _MyProfileViewExpertState extends State<MyProfileViewExpert> {
                       controller.profile.value.expert?.expertise?.length??0,
                       (index) => Container(
                             margin:
-                                EdgeInsets.only(right: 8, top: 8, bottom: 8),
-                            padding: EdgeInsets.symmetric(
+                                const EdgeInsets.only(right: 8, top: 8, bottom: 8),
+                            padding: const EdgeInsets.symmetric(
                                 horizontal: 13, vertical: 6),
                             decoration: BoxDecoration(
                                 color: backgroundGrayColor,
@@ -253,11 +255,11 @@ class _MyProfileViewExpertState extends State<MyProfileViewExpert> {
               const SizedBox(
                 height: 25,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text(
                       "Language",
                       style:
@@ -274,9 +276,9 @@ class _MyProfileViewExpertState extends State<MyProfileViewExpert> {
                       children: List.generate(
                           controller.profile.value.expert?.languages?.length??0,
                           (index) => Container(
-                                margin: EdgeInsets.only(
+                                margin: const EdgeInsets.only(
                                     right: 8, top: 8, bottom: 8),
-                                padding: EdgeInsets.symmetric(
+                                padding: const EdgeInsets.symmetric(
                                     horizontal: 13, vertical: 6),
                                 decoration: BoxDecoration(
                                     color: backgroundGrayColor,
@@ -298,7 +300,7 @@ class _MyProfileViewExpertState extends State<MyProfileViewExpert> {
                     Text(
                       "\$ ${controller.profile.value.expert?.price!=null?controller.profile.value.expert?.price.toString():''}/hr",
                       style:
-                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                          const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
@@ -343,7 +345,7 @@ class _MyProfileViewExpertState extends State<MyProfileViewExpert> {
               ),
               GestureDetector(
                 onTap: () {
-                  showDeleteAccountDialogue(context);
+                 showDeleteAccountDialogue(context);
                 },
                 child: Container(
                   margin: const EdgeInsets.symmetric(vertical: 12),

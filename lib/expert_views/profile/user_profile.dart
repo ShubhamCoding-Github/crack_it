@@ -49,9 +49,9 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
                                 color: backgroundGrayColor),
-                            child: Column(
+                            child: const Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: const [
+                                children: [
                                   SizedBox(
                                     height: 20,
                                   ),
@@ -92,11 +92,11 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                 const SizedBox(
                   height: 30,
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 8),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
-                    children: const [
+                    children: [
                       Text(
                         "Description",
                         style: TextStyle(
@@ -120,7 +120,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                 ),
                 GestureDetector(
                     onTap: () {
-                      Get.to(() => ChatScreen());
+                      Get.to(() => const ChatScreen());
                     },
                     child: SvgPicture.asset(messageIc))
               ],

@@ -7,7 +7,6 @@ import 'package:crack_it_user/utils/constants/base_images.dart';
 import 'package:crack_it_user/utils/constants/base_sizes.dart';
 import 'package:crack_it_user/views/booking/booking_details_view.dart';
 import 'package:crack_it_user/views/dashboard/controller/dashboard_controller.dart';
-import 'package:crack_it_user/views/payment/payment_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';

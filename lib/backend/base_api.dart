@@ -7,9 +7,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' as X;
-import 'package:get/get_core/src/get_main.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:permission_handler/permission_handler.dart';
+
 
 import '../storage/base_overlays.dart';
 import '../storage/base_shared_preference.dart';
@@ -337,3 +335,9 @@ class BaseAPI {
     }
   }
 }
+
+
+
+
+
+

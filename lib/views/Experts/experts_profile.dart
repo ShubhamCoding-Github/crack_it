@@ -3,7 +3,6 @@ import 'package:crack_it_user/utils/base_widgets/base_button.dart';
 import 'package:crack_it_user/utils/constants/base_colors.dart';
 import 'package:crack_it_user/utils/constants/base_images.dart';
 import 'package:crack_it_user/utils/constants/base_sizes.dart';
-import 'package:crack_it_user/views/payment/payment_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
